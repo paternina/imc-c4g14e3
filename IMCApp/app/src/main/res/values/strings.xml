@@ -8,7 +8,8 @@
     <string name="phone">Teléfono</string>
     <string name="weight">Peso</string>
     <string name="height">Estatura</string>
-    <string name="result">Resultado</string>
+    <string name="result">Resultado: %1$s</string>
     <string name="nit">NIT</string>
     <string name="birth_date">Fecha Nacimiento</string>
+    <string name="gender">Género</string>
 </resources>
