@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
 public class ResultActivity extends AppCompatActivity {
 
     @Override
@@ -18,11 +20,22 @@ public class ResultActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         Button goBackBtn = findViewById(R.id.go_back);
 
-        TextView result = findViewById(R.id.result);
+        TextView result = findViewById(R.id.imc_result);
+        TextView userInfo = findViewById(R.id.user_info);
         if(extras != null) {
-            String data = extras.getString("imcResult");
-            if(data != null) {
-                result.setText(getString(R.string.result) + ": "+ data);
+            String imc = extras.getString("imcResult");
+            HashMap<String, String> userData = (HashMap<String, String>) extras.getSerializable("userData");
+            if(imc != null) {
+                result.setText(getString(R.string.result) + ": "+ imc);
+            }
+            if(userData != null) {
+                String data = "";
+                data += "Nombres: " + userData.get("name") + "\n";
+                data += "Apellidos: " + userData.get("lastName") + "\n";
+                data += "Teléfono: " + userData.get("phone") + "\n";
+                data += "Fecha Nacimiento: " + userData.get("date") + "\n";
+                data += "Género: " + userData.get("gender") + "\n";
+                userInfo.setText(data);
             }
         }
 

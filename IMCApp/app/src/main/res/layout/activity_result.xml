@@ -8,11 +8,19 @@
     tools:context=".ResultActivity">
 
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:layout_margin="15dp" />
+    <TextView
+        android:id="@+id/imc_result"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_gravity="center"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:padding="10dp"
         android:layout_margin="15dp" />
     <Button
