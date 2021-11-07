@@ -30,6 +30,7 @@ public class ResultActivity extends AppCompatActivity {
             }
             if(userData != null) {
                 String data = "";
+                data += "NIT: " + userData.get("nit") + "\n";
                 data += "Nombres: " + userData.get("name") + "\n";
                 data += "Apellidos: " + userData.get("lastName") + "\n";
                 data += "Teléfono: " + userData.get("phone") + "\n";

@@ -12,7 +12,7 @@ import android.widget.RadioGroup;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-
+    private EditText nit;
     private EditText weight;
     private EditText height;
     private EditText name;
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // User data
+        nit = findViewById(R.id.nit);
         name = findViewById(R.id.name);
         lastName = findViewById(R.id.lastname);
         date = findViewById(R.id.date);
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     public HashMap setUserData() {
         HashMap<String, String> userData = new HashMap<String, String>();
+        userData.put("nit", nit.getText().toString());
         userData.put("name", name.getText().toString());
         userData.put("lastName", lastName.getText().toString());
         userData.put("date", date.getText().toString());
