@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IMC App</string>
+    <string name="calculate">Calcular</string>
+    <string name="name">Nombre</string>
+    <string name="lastname">Apellido</string>
+    <string name="male">Masculino</string>
+    <string name="female">Femenino</string>
+    <string name="phone">Teléfono</string>
+    <string name="weight">Peso</string>
+    <string name="height">Estatura</string>
+    <string name="result">Resultado</string>
+</resources>

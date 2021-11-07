@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IMC App</string>
+    <string name="calculate">Calculate</string>
+    <string name="name">Name</string>
+    <string name="lastname">Lastname</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="phone">Phone</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="result">Result</string>
+</resources>
