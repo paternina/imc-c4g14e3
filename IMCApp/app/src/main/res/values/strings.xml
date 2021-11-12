@@ -6,10 +6,16 @@
     <string name="male">Masculino</string>
     <string name="female">Femenino</string>
     <string name="phone">Teléfono</string>
-    <string name="weight">Peso</string>
-    <string name="height">Estatura</string>
+    <string name="weight">Peso (Kg)</string>
+    <string name="height">Estatura (m)</string>
     <string name="result">Resultado: %1$s</string>
     <string name="nit">NIT</string>
     <string name="birth_date">Fecha Nacimiento</string>
     <string name="gender">Género</string>
+    <string name="go_back">Regresar</string>
+    <string name="fab_content_desc">New</string>
+    <string name="send">Enviar</string>
+    <string name="new_user">Nuevo Usuario</string>
+    <string name="save">Guardar</string>
+    <string name="app_version_info">V0.1.0 - 2021</string>
 </resources>

@@ -3,83 +3,50 @@ package com.example.imcapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.TextView;
 
-import java.util.HashMap;
+import com.example.imcapp.db.IMCDbHelper;
+import com.example.imcapp.db.ImcContract;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText nit;
-    private EditText weight;
-    private EditText height;
-    private EditText name;
-    private EditText lastName;
-    private EditText date;
-    private EditText phone;
-    private RadioButton male;
-    private RadioButton female;
-
+    private  IMCDbHelper imcDbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // User data
-        nit = findViewById(R.id.nit);
-        name = findViewById(R.id.name);
-        lastName = findViewById(R.id.lastname);
-        date = findViewById(R.id.date);
-        phone = findViewById(R.id.phone);
-        male = findViewById(R.id.male);
-        female = findViewById(R.id.female);
-        weight = findViewById(R.id.weight);
-        height = findViewById(R.id.height);
-        Button calculateBtn = findViewById(R.id.btnCalcular);
-        calculateBtn.setOnClickListener(view -> calculateIMC());
+        Button btnNewIMC = findViewById(R.id.new_imc);
+        Button btnNewUser = findViewById(R.id.new_user);
+
+        btnNewIMC.setOnClickListener(view -> newActivityIntent(IMCActivity.class));
+
+        btnNewUser.setOnClickListener(view -> newActivityIntent(UserActivity.class));
+
+        imcDbHelper = new IMCDbHelper(this);
     }
 
-    public void calculateIMC() {
-        String pText = weight.getText().toString();
-        String sText = height.getText().toString();
-        double p = parseDouble(pText);
-        double s = parseDouble(sText);
-        double res = p / (s * s);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        displayDBInformation();
+    }
 
-        Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-        intent.putExtra("imcResult", String.valueOf(res));
-        HashMap<String, String> userData = setUserData();
-        intent.putExtra("userData", userData);
+    public void newActivityIntent(Class<?> targetClass) {
+        Intent intent = new Intent(MainActivity.this, targetClass);
         startActivity(intent);
     }
 
-    public HashMap setUserData() {
-        HashMap<String, String> userData = new HashMap<String, String>();
-        userData.put("nit", nit.getText().toString());
-        userData.put("name", name.getText().toString());
-        userData.put("lastName", lastName.getText().toString());
-        userData.put("date", date.getText().toString());
-        userData.put("phone", phone.getText().toString());
-        if (male.isChecked()) {
-            userData.put("gender", "Male");
-        } else if(female.isChecked()) {
-            userData.put("gender", "Female");
-        } else {
-            userData.put("gender", "notSet");
+    public void displayDBInformation() {
+        SQLiteDatabase db = imcDbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + ImcContract.UserEntry.TABLE_NAME, null);
+        try {
+            TextView imcInfo = findViewById(R.id.imc_information);
+            imcInfo.setText("Number of rows: " + cursor.getCount());
+        } finally {
+            cursor.close();
         }
-
-        return userData;
-    }
-
-    double parseDouble(String strNumber) {
-        if (strNumber != null && strNumber.length() > 0) {
-            try {
-                return Double.parseDouble(strNumber);
-            } catch(Exception e) {
-                return -1;
-            }
-        }
-        else return 0;
     }
 }
