@@ -27,9 +27,11 @@ public class IMCDbHelper extends SQLiteOpenHelper {
                 + UserEntry.COLUMN_PHONE + " INTEGER NOT NULL)";
 
         String SQL_CREATE_IMC_TABLE = "CREATE TABLE " + IMCEntry.TABLE_NAME + "("
-                + IMCEntry._ID + "INTEGER PRIMARY KEY, "
-                + IMCEntry.COLUMN_HEIGHT + " FLOAT NOT NULL, "
-                + IMCEntry.COLUMN_WEIGHT + " FLOAT NOT NULL, "
+                + IMCEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + IMCEntry.COLUMN_DATE + " DATE NOT NULL, "
+                + IMCEntry.COLUMN_HEIGHT + " DOUBLE NOT NULL, "
+                + IMCEntry.COLUMN_WEIGHT + " DOUBLE NOT NULL, "
+                + IMCEntry.COLUMN_RESULT + " DOUBLE NOT NULL, "
                 + IMCEntry.COLUMN_USER_ID + " INTEGER, "
                 + " FOREIGN KEY (" + IMCEntry.COLUMN_USER_ID + ") REFERENCES " + UserEntry.TABLE_NAME + "(" + UserEntry._ID + "))";
 

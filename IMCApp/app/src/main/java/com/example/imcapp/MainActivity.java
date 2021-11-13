@@ -41,12 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayDBInformation() {
         SQLiteDatabase db = imcDbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + ImcContract.UserEntry.TABLE_NAME, null);
+        Cursor userCursor = db.rawQuery("SELECT * FROM " + ImcContract.UserEntry.TABLE_NAME, null);
+        Cursor imcCursor = db.rawQuery("SELECT * FROM " + ImcContract.IMCEntry.TABLE_NAME, null);
         try {
             TextView imcInfo = findViewById(R.id.imc_information);
-            imcInfo.setText("Number of rows: " + cursor.getCount());
+            imcInfo.setText("Number of users: " + userCursor.getCount() + "\n Number of IMC Records: " + imcCursor.getCount());
         } finally {
-            cursor.close();
+            userCursor.close();
+            imcCursor.close();
         }
     }
 }

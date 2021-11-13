@@ -30,15 +30,6 @@ public class UserActivity extends AppCompatActivity {
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
 
-//        Material Calendar
-//        MaterialDatePicker.Builder<?> builder = MaterialDatePicker.Builder.datePicker();
-//        builder.setTitleText("Select a date");
-//        final MaterialDatePicker<?> materialDatePicker = builder.build();
-//        Load a calendar when date input is clicked
-//        date.setOnClickListener(view -> materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER"));
-//        Set date input text when a date is selected in the calendar
-//        materialDatePicker.addOnPositiveButtonClickListener(selection -> date.setText(materialDatePicker.getHeaderText()));
-
         Button saveBtn = findViewById(R.id.btn_save);
         saveBtn.setOnClickListener(view -> {
             insertUser();
@@ -63,7 +54,7 @@ public class UserActivity extends AppCompatActivity {
         values.put(ImcContract.UserEntry.COLUMN_NIT, Integer.parseInt(uId));
         values.put(ImcContract.UserEntry.COLUMN_NAME, uName);
         values.put(ImcContract.UserEntry.COLUMN_LAST_NAME, uLastName);
-        values.put(ImcContract.UserEntry.COLUMN_PHONE, Integer.parseInt(uPhone));
+        values.put(ImcContract.UserEntry.COLUMN_PHONE, Long.parseLong(uPhone));
         values.put(ImcContract.UserEntry.COLUMN_AGE, Integer.parseInt(uEdad));
         if (male.isChecked()) {
             values.put(ImcContract.UserEntry.COLUMN_GENDER, ImcContract.UserEntry.GENDER_MALE);

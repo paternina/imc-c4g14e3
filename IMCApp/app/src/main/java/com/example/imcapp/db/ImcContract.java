@@ -25,10 +25,12 @@ public final class ImcContract {
     }
 
     public static abstract class IMCEntry implements BaseColumns {
-        public final static String _ID = BaseColumns._ID;
         public final static String TABLE_NAME = "imc_data";
+        public final static String _ID = BaseColumns._ID;
+        public final static String COLUMN_DATE = "date";
         public final static String COLUMN_WEIGHT = "weight";
         public final static String COLUMN_HEIGHT = "height";
+        public final static  String COLUMN_RESULT = "result";
         public final static String COLUMN_USER_ID = "user_id";
     }
 }
