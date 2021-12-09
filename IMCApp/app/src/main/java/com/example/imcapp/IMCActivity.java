@@ -26,16 +26,7 @@ public class IMCActivity extends AppCompatActivity {
 
         weight = findViewById(R.id.weight);
         height = findViewById(R.id.height);
-
-//        Material Calendar
-//        MaterialDatePicker.Builder<?> builder = MaterialDatePicker.Builder.datePicker();
-//        builder.setTitleText("Select a date");
-//        final MaterialDatePicker<?> materialDatePicker = builder.build();
-//        Load a calendar when date input is clicked
-//        date.setOnClickListener(view -> materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER"));
-//        Set date input text when a date is selected in the calendar
-//        materialDatePicker.addOnPositiveButtonClickListener(selection -> date.setText(selection.toString()));
-
+        
         Button calculateBtn = findViewById(R.id.calculate_btn);
 
         calculateBtn.setOnClickListener(view -> {

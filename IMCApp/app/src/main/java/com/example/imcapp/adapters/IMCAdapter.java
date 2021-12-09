@@ -1,5 +1,6 @@
 package com.example.imcapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -10,7 +11,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.imcapp.MainActivity;
 import com.example.imcapp.R;
 import com.example.imcapp.db.ImcContract;
 
@@ -24,6 +24,7 @@ public class IMCAdapter extends CursorAdapter {
         return LayoutInflater.from(context).inflate(R.layout.imc_custom_adapter, viewGroup, false);
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView txtId = view.findViewById(R.id.txt_id);
@@ -37,15 +38,12 @@ public class IMCAdapter extends CursorAdapter {
         double altura = cursor.getDouble(cursor.getColumnIndexOrThrow(ImcContract.IMCEntry.COLUMN_HEIGHT));
         double peso = cursor.getDouble(cursor.getColumnIndexOrThrow(ImcContract.IMCEntry.COLUMN_WEIGHT));
 
-        viewDetails.setOnClickListener(view1 -> {
-            Toast.makeText(context,
-                    "El dia " + strDate
-                    + " se hizo una medición, con un peso de " + peso
-                    + " y con una altura de " + altura
-                    + " dando como resultado un IMC de: " + result,
-                    Toast.LENGTH_LONG).show();
-
-        });
+        viewDetails.setOnClickListener(view1 -> Toast.makeText(context,
+                "El dia " + strDate
+                + " se hizo una medición, con un peso de " + peso
+                + " y con una altura de " + altura
+                + " dando como resultado un IMC de: " + result,
+                Toast.LENGTH_LONG).show());
 
         txtId.setText(String.valueOf(_id));
         txtDate.setText(strDate);

@@ -71,34 +71,5 @@ public class MainActivity extends AppCompatActivity {
         IMCAdapter imcAdapter = new IMCAdapter(this, imcCursor);
         ListView rView = findViewById(R.id.imc_list);
         rView.setAdapter(imcAdapter);
-//        try {
-//            TextView imcInfo = findViewById(R.id.imc_information);
-//            imcInfo.setText(getString(R.string.imc_count_string, String.valueOf(imcCursor.getCount())));
-//            if(userCursor.getCount() > 0) {
-//                // Hide Button when user is registered
-//                btnNewUser.setVisibility(Button.INVISIBLE);
-//            }
-//            imcInfo.append("\n\n\n" +
-//                    ImcContract.IMCEntry._ID + " - " +
-//                    ImcContract.IMCEntry.COLUMN_DATE + " - " +
-//                    ImcContract.IMCEntry.COLUMN_RESULT + "\n");
-//
-//            int idColumnIndex = imcCursor.getColumnIndex(ImcContract.IMCEntry._ID);
-//            int dateColumnIndex = imcCursor.getColumnIndex(ImcContract.IMCEntry.COLUMN_DATE);
-//            int resultColumnIndex = imcCursor.getColumnIndex(ImcContract.IMCEntry.COLUMN_RESULT);
-//
-//            while (imcCursor.moveToNext()) {
-//                int currentId = imcCursor.getInt(idColumnIndex);
-//                String currentDate = imcCursor.getString(dateColumnIndex);
-//                double currentResult = imcCursor.getDouble(resultColumnIndex);
-//
-//                imcInfo.append("\n" + currentId
-//                        + " - " + currentDate
-//                        + " - " + currentResult);
-//            }
-//        } finally {
-//            userCursor.close();
-//            imcCursor.close();
-//        }
     }
 }
