@@ -18,6 +18,8 @@ import com.example.imcapp.db.ImcContract;
 public class MainActivity extends AppCompatActivity {
     private  IMCDbHelper imcDbHelper;
     private Button btnNewUser, btnNewIMC;
+    private ListView usersList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void displayDBInformation() {
         SQLiteDatabase db = imcDbHelper.getReadableDatabase();
-        String[] userProjection = {
-                ImcContract.UserEntry._ID,
-                ImcContract.UserEntry.COLUMN_NIT,
-                ImcContract.UserEntry.COLUMN_NAME,
-                ImcContract.UserEntry.COLUMN_LAST_NAME,
-                ImcContract.UserEntry.COLUMN_GENDER,
-                ImcContract.UserEntry.COLUMN_AGE,
-                ImcContract.UserEntry.COLUMN_PHONE
-        };
 
         String[] imcProjection = {
                 ImcContract.IMCEntry._ID,
@@ -65,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 ImcContract.IMCEntry.COLUMN_RESULT,
         };
 
-        Cursor userCursor = db.query(ImcContract.UserEntry.TABLE_NAME, userProjection, null, null, null, null, null);
         Cursor imcCursor = db.query(ImcContract.IMCEntry.TABLE_NAME, imcProjection, null, null, null, null, null);
 
         IMCAdapter imcAdapter = new IMCAdapter(this, imcCursor);

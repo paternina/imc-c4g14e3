@@ -3,15 +3,17 @@ package com.example.imcapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.imcapp.adapters.UsersListAdapter;
 import com.example.imcapp.db.IMCDbHelper;
 import com.example.imcapp.db.ImcContract;
-import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -22,7 +24,11 @@ public class IMCActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_imc);
+
+        loadUsers();
 
         weight = findViewById(R.id.weight);
         height = findViewById(R.id.height);
@@ -34,7 +40,24 @@ public class IMCActivity extends AppCompatActivity {
             finish();
         });
     }
+    private void loadUsers() {
+        IMCDbHelper imcDbHelper = new IMCDbHelper(this);
+        SQLiteDatabase db = imcDbHelper.getReadableDatabase();
+        String[] userProjection = {
+                ImcContract.UserEntry._ID,
+                ImcContract.UserEntry.COLUMN_NIT,
+                ImcContract.UserEntry.COLUMN_NAME,
+                ImcContract.UserEntry.COLUMN_LAST_NAME,
+                ImcContract.UserEntry.COLUMN_GENDER,
+                ImcContract.UserEntry.COLUMN_AGE,
+                ImcContract.UserEntry.COLUMN_PHONE
+        };
+        Cursor userCursor = db.query(ImcContract.UserEntry.TABLE_NAME, userProjection, null, null, null, null, null);
 
+        UsersListAdapter userAdapter = new UsersListAdapter(this, userCursor);
+        ListView usersList = findViewById(R.id.userslist);
+        usersList.setAdapter(userAdapter);
+    }
     public void calculateIMC() {
         String pText = weight.getText().toString().trim();
         String sText = height.getText().toString().trim();
@@ -50,6 +73,7 @@ public class IMCActivity extends AppCompatActivity {
     }
 
     public void insertIMCData(Double heightValue, Double weightValue, Double result) {
+
         Date dateValue = Calendar.getInstance().getTime();
         // Db Helper
         IMCDbHelper imcDbHelper = new IMCDbHelper(this);
